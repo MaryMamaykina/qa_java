@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 @RunWith(Parameterized.class)
-public class LionParametrezedTest {
+public class LionParameterizedTest {
     @Before
     public void setup(){
         MockitoAnnotations.openMocks(this);
@@ -35,7 +35,7 @@ public class LionParametrezedTest {
         try {
             Lion lion = new Lion(feline,sex);
             boolean actual = lion.doesHaveMane();
-            Assert.assertEquals("lion with sex Самец should has Mane and with sex Самка shouldn't", hasMane, actual);
+            Assert.assertEquals("Lion with sex Самец should has Mane and with sex Самка shouldn't", hasMane, actual);
         } catch (Exception exception) {
             Assert.fail("Get sex throws error: " + exception.getMessage());
         }
