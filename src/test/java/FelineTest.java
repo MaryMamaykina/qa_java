@@ -33,8 +33,9 @@ public class FelineTest {
         Feline feline = new Feline();
         Feline felineSpy  = Mockito.spy(feline);
         int actual = felineSpy.getKittens();
+        int defaultNumbersOfKittens = 1;
         Mockito.verify(felineSpy, Mockito.times(1)).getKittens(1);
-        Assert.assertEquals("Feline can get kitten", 1, actual);
+        Assert.assertEquals("Feline can get kitten", defaultNumbersOfKittens, actual);
         }
     @Test
     public void doesFelineCanGetMoreThanOneKitten() {
