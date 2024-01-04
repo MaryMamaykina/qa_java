@@ -32,15 +32,13 @@ public class LionParameterizedTest {
 
     @Test
     public void checkDependenceHavingManeFromSex(){
+        boolean actual = false;
         try {
             Lion lion = new Lion(feline,sex);
-            boolean actual = lion.doesHaveMane();
-            Assert.assertEquals("Lion with sex Самец should has Mane and with sex Самка shouldn't", hasMane, actual);
+            actual = lion.doesHaveMane();
         } catch (Exception exception) {
             Assert.fail("Get sex throws error: " + exception.getMessage());
         }
-
+        Assert.assertEquals("Lion with sex Самец should has Mane and with sex Самка shouldn't", hasMane, actual);
     }
-
-
 }

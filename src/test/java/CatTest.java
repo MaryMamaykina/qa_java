@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,15 +27,16 @@ public class CatTest {
     @Test
     public void doesCatEatRightFood(){
         Cat cat = new Cat(feline);
+        List<String> expectedFoodForCat = Arrays.asList("Животные", "Птицы", "Рыба");
+        List<String> actual = new ArrayList<>();
         try {
-            List<String> expectedFoodForCat = Arrays.asList("Животные", "Птицы", "Рыба");
             Mockito.when(feline.eatMeat()).thenReturn(expectedFoodForCat);
-            List<String> actual = cat.getFood();
+            actual = cat.getFood();
             Mockito.verify(feline, Mockito.times(1)).eatMeat();
-            Assert.assertEquals("Cat should eat meat", expectedFoodForCat, actual);
         }
         catch (Exception exception){
             Assert.fail("Get food throws error: " + exception.getMessage());
         }
+        Assert.assertEquals("Cat should eat meat", expectedFoodForCat, actual);
     }
 }

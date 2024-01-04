@@ -3,30 +3,30 @@ import com.example.Feline;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FelineTest {
     @Test
     public void doesFelineEatRightFood() {
+        Feline feline = new Feline();
+        Feline felineSpy  = Mockito.spy(feline);
+        List<String> expectedFoodForFeline = Arrays.asList("Животные", "Птицы", "Рыба");
+        List<String> actual = new ArrayList<>();
         try {
-            Feline feline = new Feline();
-            Feline felineSpy  = Mockito.spy(feline);
-            List<String> expectedFoodForFeline = Arrays.asList("Животные", "Птицы", "Рыба");
-            List<String> actual = felineSpy.eatMeat();
+            actual = felineSpy.eatMeat();
             Mockito.verify((Animal)felineSpy, Mockito.times(1)).getFood("Хищник");
-            Assert.assertEquals("Feline should eat meat",expectedFoodForFeline, actual);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             Assert.fail("Get food throws error: " + exception.getMessage());
         }
+        Assert.assertEquals("Feline should eat meat",expectedFoodForFeline, actual);
     }
     @Test
     public void doesFelineHaveRightFamily() {
             Feline feline = new Feline();
             String actual = feline.getFamily();
             Assert.assertEquals("Feline have family Feline", "Кошачьи", actual);
-
     }
     @Test
     public void doesFelineCanGetKitten() {
